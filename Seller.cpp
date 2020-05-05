@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <list> 
 using namespace std;
 
 class User {       
@@ -27,17 +28,16 @@ class Product {
     int Number;
 };
 int main() {
-  User ahmad; 
+  User user1; 
   Market Market1;
-  Product water;
-
-  // Access attributes and set values
-  ahmad.id=1;
-  ahmad.Email="a@a.com";
-  ahmad.Password="1234";
-  ahmad.Phone="123456";
-  ahmad.addrese="trkey";
-  ahmad.rol=1;
+  list <Product> prod;
+  Product pr;
+  user1.id=1;
+  user1.Email="a@a.com";
+  user1.Password="1234";
+  user1.Phone="123456";
+  user1.addrese="trkey";
+  user1.rol=1;
 
   Market1.id=500;
   Market1.user_id=1;
@@ -63,25 +63,35 @@ if(email=="a@a.com"){
     }
   }
 }
-if(log==true){
-  cout<<"welcom " +ahmad.Email<<endl;
+if(log==true && user1.rol==1){
+  cout<<"welcom " +user1.Email<<endl;
   cout<<"Market Name is  " +Market1.Name<<endl;
-  cout<<"enter the first product"<<endl;
-  water.Market_id=500;
-  cout<<"enter product id"<<endl;
-  cin>>water.id;
-  
+  string i;
+  int n=1;
+while (i!="1")
+{
+  pr.id=n;
+  pr.Market_id=Market1.id;
   cout<<"enter product Name"<<endl;
-  cin>>water.Name;
-  
+  cin>>pr.Name;
   cout<<"enter product Number"<<endl;
-  cin>>water.Number;
-  
+  cin>>pr.Number;
   cout<<"enter product price"<<endl;
-  cin>>water.price;
-
-  cout<<"you have "<<water.Name<<"=>"<<water.Number <<"  pices  "<<"  price one pices =>  "<<water.price<<"$"<<endl;
-
+  cin>>pr.price;
+  cout<<"if finish enter 1"<<endl;
+  prod.push_back(pr);
+  cin>>i;
+  n++;
+}
+double total;
+double totalmany;
+for (list<Product>::iterator p=prod.begin(); p!=prod.end(); p++) {
+  
+  total=p->Number*p->price;
+  cout<<"you have "<<p->Name<<"=>"<<p->Number <<"  pices  "<<"  price one pices =>  "<<p->price<<"$"<<" total "<<total<< "$"<<endl;
+  totalmany=totalmany+total;
+}
+cout<<"you have product equal "<<totalmany<<"$"<<endl;
 }else{
   cout<<"You cant login to this System" +Market1.Name<<endl;
 } 
